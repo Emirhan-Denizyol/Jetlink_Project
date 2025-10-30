@@ -73,55 +73,105 @@ Proje tamamen modüler Python yapısına göre tasarlandı:
 
 chat-memory-bot/
 ├── src/
+
 │ ├── app.py # Streamlit arayüz ve kontrol akışı
+
 │ ├── config.py # Genel yapılandırmalar
+
 │ │
+
 │ ├── llm/
+
 │ │ └── gemini_client.py # Google Gemini API istemcisi
+
 │ │
+
 │ ├── memory/
+
 │ │ ├── stm.py # Kısa süreli bellek (Session State)
+
 │ │ ├── ltm_store.py # Kalıcı hafıza (SQLite)
+
 │ │ ├── retrieval.py # Embedding tabanlı benzerlik arama
+
 │ │ └── policy.py # Hafıza politikaları ve eşik değerleri
+
 │ │
+
 │ ├── embed/
+
 │ │ └── google_embed.py # Google Embedding işlemleri
+
 │ │
+
 │ ├── chat/
+
 │ │ └── store.py # Konuşma kayıt yönetimi
+
 │ │
+
 │ ├── web/
+
 │ │ └── search.py # DuckDuckGo tabanlı web arama
+
 │ │
+
 │ ├── utils/
+
 │ │ ├── text.py # Yardımcı metin fonksiyonları
+
 │ │ ├── pii.py # PII (kişisel veri) tespiti ve temizleme
+
 │ │ ├── similarity.py # Benzerlik ölçümü (cosine, dot)
+
 │ │ 
+
 │ │
+
 │ ├── prompts/
+
 │ │ ├── compuse.py # Sistem promptları
+
 │ │ └── system.txt # Sistem tanımları
+
 │ │
+
 │ └── tests/
+
 │ ├── test_ltm_store.py
+
 │ ├── test_retrieval.py
+
 │ └── test_similarity.py
+
 │
+
 ├── data/
+
 │ ├── uploads/ # Kullanıcı yüklediği dosyalar
+
 │ └── memory.db # Kalıcı hafıza veritabanı
+
 │
+
 ├── scripts/
+
 │ ├── init_db.py # Veritabanı kurulum betiği
+
 │ ├── export_memories.py # Hafıza dışa aktarma
+
 │ └── seed_memories.py # Örnek veri yükleme
+
 │
+
 ├── Dockerfile
+
 ├── docker-compose.yml
+
 ├── requirements.txt
+
 ├── .env
+
 └── README.md
 
 
