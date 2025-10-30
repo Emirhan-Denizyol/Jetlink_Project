@@ -299,10 +299,9 @@ Teknik Notlar
 
 
 Projeyi Çalıştırma (Hızlı Başlangıç)
-
 Projeyi klonlayıp yerel ortamda veya Docker üzerinden kolayca çalıştırabilirsiniz.
 
-🧭 Adım Adım Kurulum
+Adım Adım Kurulum
 
 # 1. Reponun klonlanması
 git clone https://github.com/Emirhan-Denizyol/Jetlink_Project.git
@@ -320,4 +319,3 @@ docker compose up -d --build
 
 Uygulama başlatıldıktan sonra, tarayıcınızdan şu adrese giderek erişebilirsiniz:
 👉 http://localhost:8501
-
