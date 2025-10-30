@@ -1,0 +1,12 @@
+numpy
+pytest
+python-dotenv
+streamlit
+google-generativeai
+duckduckgo_search==8.1.1
+ddgs==9.6.0
+beautifulsoup4
+requests
+pymupdf         # PDF okuma (fitz)
+python-docx     # DOCX okuma
+Pillow          # Görsel işlemleri (şimdilik basit kullanım)
