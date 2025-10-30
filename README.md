@@ -1,4 +1,4 @@
-# 🧠 Chat Memory Bot
+# Chat Memory Bot
 
 **Chat Memory Bot**, kullanıcıyla yaptığı konuşmalardan öğrenen, uzun vadeli bilgileri koruyan ve gerektiğinde gerçek zamanlı web araması yaparak güncel bilgilere erişebilen bir **LLM tabanlı akıllı asistan** projesidir.
 
@@ -7,9 +7,9 @@ Her bileşen kendi sorumluluk alanına sahiptir ve proje, **LangChain gibi frame
 
 ---
 
-## 🚀 Özellikler
+## Özellikler
 
-### 🧩 1. Hafıza Sistemi (Memory Architecture)
+### 1. Hafıza Sistemi (Memory Architecture)
 Chat Memory Bot, insan benzeri hafıza sistemini iki katmanda uygular:
 
 - **STM (Short-Term Memory)**  
@@ -25,7 +25,7 @@ Chat Memory Bot, insan benzeri hafıza sistemini iki katmanda uygular:
 
 ---
 
-### 🌐 2. Web Araması (Real-Time Knowledge Access)
+### 2. Web Araması (Real-Time Knowledge Access)
 - Model, **güncel bilgi gerektiğinde** otomatik olarak web araması yapılması gerektiğini belirler.  
   Bu durumda sadece şu şekilde bir yanıt döner:
 
@@ -40,7 +40,7 @@ Bu yapı sayesinde model hem geçmiş bağlamı (LTM) hem de güncel web veriler
 
 ---
 
-### 🧾 3. Çok Formatlı Dosya Girişi (Multimodal Input)
+### 3. Çok Formatlı Dosya Girişi (Multimodal Input)
 Kullanıcılar, metin dışında **dosya veya görsel** de yükleyebilir.  
 Desteklenen formatlar:
 - PDF (`PyMuPDF`)
@@ -57,7 +57,7 @@ Bu sayede kullanıcı PDF veya Word dosyasını yüklediğinde, model içerikten
 
 ---
 
-### 💬 4. Seç & Sor Etkileşimi
+### 4. Seç & Sor Etkileşimi
 - Her mesajın altında **“Seç & Sor”** butonu bulunur.  
 - Kullanıcı geçmişteki bir mesajı seçip doğrudan o metin üzerinden soru yöneltebilir.  
 - Seçilen içerik otomatik olarak alıntılanır (`> quote` biçiminde).  
@@ -67,7 +67,7 @@ Bu özellik, doküman temelli veya uzun konuşmalarda doğrudan odaklanmayı kol
 
 ---
 
-### ⚙️ 5. Modüler Kod Mimarisi
+### 5. Modüler Kod Mimarisi
 Proje tamamen modüler Python yapısına göre tasarlandı:
 
 
@@ -177,10 +177,11 @@ chat-memory-bot/
 
 ---
 
-### 🧱 6. Docker Desteği
+### 6. Docker Desteği
 
 #### `Dockerfile`
-```dockerfile
+
+dockerfile
 FROM python:3.12-slim
 
 WORKDIR /app
@@ -234,6 +235,7 @@ Gemini LLM
     ▼
  Nihai Yanıt (STM + LTM + WEB)
 
+
 Örnek Kullanım Senaryoları
 
 | Kullanıcı Sorusu                                | Beklenen Davranış                                 |
@@ -243,18 +245,23 @@ Gemini LLM
 | “Ali ile ilgili geçmiş notları hatırlat.”       | LTM üzerinden ilgili içerik çağrılır.             |
 | “Bugün dolar kaç TL?”                           | Web araması tetiklenir, kaynaklı cevap üretilir.  |
 
-Kurulum
 
-   1. Ortam Değişkenleri
-      .env dosyasına ekleyin:
-         GOOGLE_API_KEY=your_gemini_api_key_here
-         GEMINI_MODEL=gemini-2.0-flash
-   
-   2. Docker Üzerinden Çalıştırma
-      docker compose up -d
+ Kurulum
+1. Ortam Değişkenleri
 
-   3. Uygulamayı Açın
-      localhost:8501
+    .env dosyasına ekleyin:
+
+      GOOGLE_API_KEY=your_gemini_api_key_here
+
+        GEMINI_MODEL=gemini-2.0-flash
+
+2. Docker Üzerinden Çalıştırma
+
+    docker compose up -d
+
+3. Uygulamayı Açın
+
+    localhost:8501
 
 
 Test Örnekleri
@@ -267,24 +274,50 @@ Test Örnekleri
 | “Bugün dolar kaç TL?”                           | Web araması tetiklenir, kaynaklı cevap üretilir.  |
 
 
-
 Kullanılan Teknolojiler
 
-| Alan         | Teknoloji                    |
-| ------------ | ---------------------------- |
-| LLM          | Google Gemini API            |
-| Embedding    | Google Embeddings            |
-| Web Arama    | DuckDuckGo (ddgs)            |
-| Hafıza       | STM + LTM (SQLite)           |
-| Arayüz       | Streamlit                    |
-| Konteyner    | Docker + Compose             |
-| Test         | PyTest                       |
-| Dil          | Python 3.12                  |
-
+| Alan      | Teknoloji          |
+| --------- | ------------------ |
+| LLM       | Google Gemini API  |
+| Embedding | Google Embeddings  |
+| Web Arama | DuckDuckGo (ddgs)  |
+| Hafıza    | STM + LTM (SQLite) |
+| Arayüz    | Streamlit          |
+| Konteyner | Docker + Compose   |
+| Test      | PyTest             |
+| Dil       | Python 3.12        |
 
 Teknik Notlar
 
-LLM çağrıları doğrudan google.generativeai SDK’sı ile yapılır.
-Web araması için ddgs (v9.6.1) sürümü kullanılmıştır.
-Tüm hafıza verileri data/memory.db içinde saklanır.
-Kod yapısı test edilebilir, bağımsız ve genişletilebilir olacak şekilde tasarlanmıştır.
+-  LLLM çağrıları doğrudan google.generativeai SDK'sı ile yapılır.
+
+-  Web araması için ddgs (v9.6.1) sürümü kullanılmıştır.
+
+-  Tüm hafıza verileri data/memory.db içinde saklanır.
+
+-  Kod yapısı test edilebilir, bağımsız ve genişletilebilir olacak şekilde tasarlanmıştır.
+
+
+Projeyi Çalıştırma (Hızlı Başlangıç)
+
+Projeyi klonlayıp yerel ortamda veya Docker üzerinden kolayca çalıştırabilirsiniz.
+
+🧭 Adım Adım Kurulum
+
+# 1. Reponun klonlanması
+git clone https://github.com/Emirhan-Denizyol/Jetlink_Project.git
+cd Jetlink_Project
+
+# 2. Ortam değişkeni dosyasının oluşturulması
+cp .env.example .env
+
+# 3. .env dosyasına Gemini API anahtarınızı ekleyin
+# GOOGLE_API_KEY=your_gemini_api_key_here
+# GEMINI_MODEL=gemini-2.0-flash
+
+# 4. Docker imajını oluşturup çalıştırın
+docker compose up -d --build
+
+Uygulama başlatıldıktan sonra, tarayıcınızdan şu adrese giderek erişebilirsiniz:
+👉 http://localhost:8501
+
