@@ -302,23 +302,23 @@ Teknik Notlar
 
 Projeyi klonlayıp yerel ortamda veya Docker üzerinden kolayca çalıştırabilirsiniz.
 
-### 🔧 Adım Adım Kurulum
+### Adım Adım Kurulum
 
 #### 1. Reponun klonlanması
 bash
 git clone https://github.com/Emirhan-Denizyol/Jetlink_Project.git
 cd Jetlink_Project
 
-Ortam değişkeni dosyasının oluşturulması
+#### 2. Ortam değişkeni dosyasının oluşturulması
 cp .env.example .env
 
-.env dosyasına Gemini API anahtarınızı ekleyin
+#### 3. .env dosyasına Gemini API anahtarınızı ekleyin
 GOOGLE_API_KEY=your_gemini_api_key_here
 GEMINI_MODEL=gemini-2.0-flash
 
-Docker imajını oluşturup çalıştırın
+#### 4. Docker imajını oluşturup çalıştırın
 docker compose up -d --build
 
-Uygulama başlatıldıktan sonra, tarayıcınızdan şu adrese giderek erişebilirsiniz:
+#### 5. Uygulama başlatıldıktan sonra, tarayıcınızdan şu adrese giderek erişebilirsiniz:
 http://localhost:8501
 ```
