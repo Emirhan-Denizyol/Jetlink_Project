@@ -306,14 +306,17 @@ Projeyi klonlayıp yerel ortamda veya Docker üzerinden kolayca çalıştırabil
 
 #### 1. Reponun klonlanması
 bash
+
 git clone https://github.com/Emirhan-Denizyol/Jetlink_Project.git
-cd Jetlink_Project
+
+cd chat-memory-bot
 
 #### 2. Ortam değişkeni dosyasının oluşturulması
 cp .env.example .env
 
 #### 3. .env dosyasına Gemini API anahtarınızı ekleyin
 GOOGLE_API_KEY=your_gemini_api_key_here
+
 GEMINI_MODEL=gemini-2.0-flash
 
 #### 4. Docker imajını oluşturup çalıştırın
