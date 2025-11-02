@@ -27,6 +27,10 @@ class STM:
     def as_list(self) -> List[Dict[str, str]]:
         return list(self.messages)
 
+    def reset(self) -> None:
+        """Oturum değişimlerinde kullanışlı: tamponu tamamen temizler."""
+        self.messages = []
+
     def _trim(self):
         # 1) Mesaj sayısı limiti (varsa): system mesajlarını mümkün olduğunca koru
         if self.max_messages is not None and len(self.messages) > self.max_messages:
@@ -39,8 +43,8 @@ class STM:
             while len(self.messages) > self.max_messages:
                 del self.messages[0]
 
-        # 2) Token bütçesi limiti (istersen aktif bırak)
-        def cost(msg): return rough_token_count(msg.get("content","")) + 4
+        # 2) Token bütçesi limiti
+        def cost(msg): return rough_token_count(msg.get("content", "")) + 4
         total = sum(cost(m) for m in self.messages)
         if total <= self.token_budget:
             return
@@ -54,4 +58,3 @@ class STM:
         while total > self.token_budget and len(self.messages) > 1:
             total -= cost(self.messages[0])
             del self.messages[0]
- 

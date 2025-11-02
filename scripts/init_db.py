@@ -8,7 +8,7 @@ DB_PATH.parent.mkdir(parents=True, exist_ok=True)
 schema = r"""
 PRAGMA journal_mode=WAL;
 
-/* --- LTM mevcut tablolar (değiştirmiyoruz) --- */
+/* --- LTM mevcut tablolar --- */
 CREATE TABLE IF NOT EXISTS memories (
   id INTEGER PRIMARY KEY,
   user_id TEXT NOT NULL,
@@ -37,7 +37,7 @@ CREATE TRIGGER IF NOT EXISTS memories_au AFTER UPDATE ON memories BEGIN
   INSERT INTO memories_fts(rowid, text) VALUES (new.id, new.text);
 END;
 
-/* --- Yeni: sohbet kalıcılığı --- */
+/* --- Sohbet kalıcılığı --- */
 CREATE TABLE IF NOT EXISTS conversations (
   id INTEGER PRIMARY KEY,
   user_id TEXT NOT NULL,
@@ -55,9 +55,15 @@ CREATE TABLE IF NOT EXISTS messages (
   FOREIGN KEY(conv_id) REFERENCES conversations(id) ON DELETE CASCADE
 );
 
+/* --- İndeksler: sorgu ve retrieval performansı için --- */
 CREATE INDEX IF NOT EXISTS idx_messages_conv ON messages(conv_id, id);
-"""
+CREATE INDEX IF NOT EXISTS idx_conversations_user_updated ON conversations(user_id, updated_at DESC);
 
+-- LTM kullanım desenleri: user_id filtresi ve (isteğe bağlı) tags/source taraması
+CREATE INDEX IF NOT EXISTS idx_memories_user_created ON memories(user_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_memories_user_tags ON memories(user_id, tags);
+CREATE INDEX IF NOT EXISTS idx_memories_user_source ON memories(user_id, source);
+"""
 
 with sqlite3.connect(DB_PATH) as con:
     con.executescript(schema)
